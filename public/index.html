@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>GameZone</title>
+    <title>Document</title>
+</head>
+<body>
+    <div id="mensaje-notificacion"></div>
+    <h1>🎮 Videojuegos</h1>
+
+    <div class="separador-neon"></div>
+
+    <div id="buscador">
+        <input type="text" id="buscar-videojuego" placeholder="🔎 Buscar videojuego...">
+    </div>
+
+    <button id="boton-menu">☰ Menú</button>
+
+    <nav id="menu-movil">
+
+        <div id="filtros">
+
+            <select id="filtro-genero">
+                <option value="">🎮 Todos los géneros</option>
+                <option value="Aventura">Aventura</option>
+                <option value="Accion">Acción</option>
+                <option value="RPG">RPG</option>
+                <option value="Deportes">Deportes</option>
+                <option value="Estrategia">Estrategia</option>
+            </select>
+
+            <select id="filtro-plataforma">
+                <option value="">🕹️ Todas las plataformas</option>
+                <option value="PC">PC</option>
+                <option value="PS5">PS5</option>
+                <option value="Xbox">Xbox</option>
+                <option value="Switch">Switch</option>
+            </select>
+
+            <select id="filtro-precio">
+                <option value="">💰 Todos los precios</option>
+                <option value="20">Menos de 20 €</option>
+                <option value="20-40">20 € - 40 €</option>
+                <option value="40">Más de 40 €</option>
+            </select>
+
+        </div>
+
+        <button id="mostrar-formulario">➕ Añadir videojuego</button>
+        <button id="mostrar-favoritos">❤️ Mis favoritos</button>
+        <button id="mostrar-todos">🎮 Todos los videojuegos</button>
+        <button id="mostrar-ranking">🏆 Ranking</button>
+        <button id="mostrar-recomendaciones">🤖 Recomendaciones con IA</button>
+        
+    </nav>
+
+    <div id="ranking-videojuegos"></div>
+
+    <!-- 🤖 RECOMENDACIONES CON IA -->
+
+    <section id="seccion-recomendaciones" style="display: none;">
+        <div class="contenedor-recomendaciones">
+            <h2>🤖 Descubre tu próximo videojuego</h2>
+            <p class="texto-recomendaciones">
+                Cuéntanos qué te gusta y encontraremos videojuegos
+                que encajen contigo.
+            </p>
+
+            <form id="formulario-recomendaciones">
+                <!-- Género favorito -->
+                <label for="recomendacion-genero">🎮 ¿Qué género prefieres?</label>
+                <select id="recomendacion-genero">
+                    <option value="">Cualquier género</option>
+                    <option value="Aventura">Aventura</option>
+                    <option value="Accion">Acción</option>
+                    <option value="RPG">RPG</option>
+                    <option value="Deportes">Deportes</option>
+                    <option value="Estrategia">Estrategia</option>
+                    <option value="Terror">Terror</option>
+                    <option value="Simulación">Simulación</option>
+                </select>
+
+                <!-- Plataforma -->
+                <label for="recomendacion-plataforma">🕹️ ¿En qué plataforma juegas?</label>
+                <select id="recomendacion-plataforma">
+                    <option value="">Cualquiera</option>
+                    <option value="PC">PC</option>
+                    <option value="PlayStation 5">PlayStation 5</option>
+                    <option value="Xbox">Xbox</option>
+                    <option value="Nintendo Switch">Nintendo Switch</option>
+                </select>
+
+                <!-- Presupuesto -->
+                <label for="recomendacion-precio">💰 ¿Cuál es tu presupuesto?</label>
+                <select id="recomendacion-precio">
+                    <option value="">Sin límite de precio</option>
+                    <option value="20">Menos de 20 €</option>
+                    <option value="20-40">Entre 20 € y 40 €</option>
+                    <option value="40-60">Entre 40 € y 60 €</option>
+                    <option value="60">Más de 60 €</option>
+                </select>
+
+                <!-- Experiencia de juego -->
+                <label for="recomendacion-experiencia">✨ ¿Qué tipo de experiencia buscas?</label>
+                <select id="recomendacion-experiencia">
+                    <option value="">Cualquier experiencia</option>
+                    <option value="Historia emocionante">Una historia emocionante</option>
+                    <option value="Mundo abierto">Un mundo abierto para explorar</option>
+                    <option value="Acción y combate">Acción y combates</option>
+                    <option value="Relajante">Una experiencia relajante</option>
+                    <option value="Cooperativo">Jugar con amigos</option>
+                    <option value="Estrategia">Pensar y crear estrategias</option>
+                </select>
+
+                <!-- Botones -->
+                <button type="submit" id="boton-generar-recomendaciones">
+                    ✨ Recomiéndame videojuegos
+                </button>
+
+                <button type="button" id="cerrar-recomendaciones">
+                    ✖ Cerrar
+                </button>
+            </form>
+
+            <!-- Aquí mostraremos las recomendaciones -->
+            <div id="resultado-recomendaciones"></div>
+            
+        </div>
+
+    </section>
+
+    <form id="formulario-videojuego" style="display: none;">
+        <input type="text" id="titulo" placeholder="Título" required>
+        <input type="text" id="desarrollador" placeholder="Desarrollador" required>
+        <input type="number" id="anio" placeholder="Año" required>
+        <input type="text" id="genero" placeholder="Género" required>
+        <input type="text" id="plataformas" placeholder="Plataformas (PC, PS5...)" required>
+        <input type="number" id="precio" placeholder="Precio" step="0.01" required>
+        <input type="text" id="imagen" placeholder="Ruta de imagen">
+        <input type="text" id="video" placeholder="URL del tráiler de YouTube">
+        <button type="submit">🎮 Añadir videojuego</button>
+    </form>
+
+    <main>
+        <section id="lista-videojuegos">
+
+        </section>
+
+        <section id="resultados-rawg">
+
+        </section>
+
+        <section id="detalle-videojuego">
+
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer id="footer">
+
+        <div class="footer-contenido">
+
+            <!-- Información de la página -->
+            <div class="footer-seccion footer-sobre">
+
+                <h2 class="footer-logo">
+                    <i class="fa-solid fa-gamepad"></i>
+                    GameZone
+                </h2>
+
+                <p>
+                    Descubre videojuegos, comparte tus opiniones
+                    y encuentra tu próxima aventura.
+                </p>
+
+            </div>
+
+            <!-- Navegación -->
+            <div class="footer-seccion footer-enlaces">
+
+                <h3>Explorar</h3>
+
+                <a href="#buscador">Buscar videojuegos</a>
+
+                <a href="#lista-videojuegos">Videojuegos</a>
+
+                <a href="#ranking-videojuegos">Ranking</a>
+
+            </div>
+
+            <!-- Redes sociales -->
+            <div class="footer-seccion footer-redes">
+
+                <h3>Encuéntrame en</h3>
+
+                <p>Sígueme en mis redes sociales.</p>
+
+                <div class="footer-iconos-sociales">
+
+                    <a href="https://www.tiktok.com/@gabriifloow08"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="TikTok"
+                    title="TikTok">
+
+                        <i class="fa-brands fa-tiktok"></i>
+
+                    </a>
+
+                    <a href="https://www.instagram.com/real.gabz08/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram"
+                    title="Instagram">
+
+                        <i class="fa-brands fa-instagram"></i>
+
+                    </a>
+
+                    <a href="https://codepen.io/TU_USUARIO"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="CodePen"
+                    title="CodePen">
+
+                        <i class="fa-brands fa-codepen"></i>
+
+                    </a>
+
+                    <a href="https://github.com/gf3820591-sketch"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="GitHub"
+                    title="GitHub">
+
+                        <i class="fa-brands fa-github"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Información inferior -->
+        <div class="footer-inferior">
+            <p>© 2026 GameZone</p>
+            <p>Proyecto web de videojuegos</p>
+        </div>
+    </footer>
+
+    <button id="volver-arriba" aria-label="volver arriba" title="volver-arriba">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <script src="app.js"></script>
+</body>
+</html>

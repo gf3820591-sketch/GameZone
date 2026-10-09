@@ -1,0 +1,1881 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding: 40px;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: white;
+
+    background-image: 
+    linear-gradient(
+        rgba(5, 5, 20, 0.72),
+        rgba(5, 5, 20, 0.72)
+    ),
+
+    url("img/fondo.png");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+h1{
+    text-align: center;
+    margin: 10px 0 45px;
+    font-size: 52px;
+    color: #00ffff;
+    text-shadow: 0 0 5px #00ffff, 0 0 15px #00ffff, 0 0 30px rgba(0, 255, 255, 0.8);
+    letter-spacing: 3px;
+    transition: 0.3s ease;    
+}
+
+h1:hover{
+    color: #ff00ff;
+    text-shadow: 0 0 5px #ff00ff, 0 0 15px #ff00ff, 0 0 30px rgba(255, 0, 255, 0.8);
+}
+
+#lista-videojuegos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+#lista-videojuegos div {
+    background: linear-gradient(145deg, #15152a, #0f0f20);
+    padding: 15px;
+    border: 1px solid #00ffff;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.3), inset 0 0 15px rgba(0, 255, 255, 0.05);
+    transition: 0.3s ease;
+    overflow: hidden;
+}
+
+#lista-videojuegos div:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: #ff00ff;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5), 0 0 35px rgba(255, 0, 255, 0.3);
+}
+
+#lista-videojuegos img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    margin-bottom: 15px;
+    transition: 0.4s ease;
+}
+
+#lista-videojuegos div:hover img{
+    transform: scale(1.05);
+    filter: brightness(1.15);
+}
+
+#lista-videojuegos h2 {
+    margin-top: 0;
+    color: #ff00ff;
+    text-shadow: 0 0 8px #ff00ff;
+    font-size: 22px;
+    transition: 0.3s ease;
+}
+
+#lista-videojuegos div:hover h2{
+    color: #00ffff;
+    text-shadow: 0 0 8px #00ffff, 0 0 18px #00ffff;
+}
+
+#lista-videojuegos p {
+    margin: 8px 0;
+    color: #dddddd;
+}
+
+#lista-videojuegos strong {
+    color: #00ffff;
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #050510;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #00ffff;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ff00ff;
+}
+
+#formulario-videojuego{
+    max-width: 700px;
+    margin: 0 auto 40px;
+    padding: 20px;
+    background: #15152a;
+    border: 1px solid #00ffff;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+#formulario-videojuego input{
+    padding: 12px;
+    border: 1px solid #444;
+    background: #0b0b18;
+    color: white;
+    font-size: 15px;
+}
+
+#formulario-videojuego button{
+    grid-column: 1 / -1;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background: #ff00ff;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+}
+
+#mostrar-formulario{
+    display: block;
+    margin: 0 auto 30px;
+    padding: 12px 25px;
+    border: 1px solid #00ffff;
+    border-radius: 8px;
+    background: #15152a;
+    color: #00ffff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+    transition: 0.3s;
+}
+
+#mostrar-formulario:hover{
+    background: #00ffff;
+    color: #0b0b18;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+}
+
+.btn-eliminar{
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ff00ff;
+    border-radius: 6px;
+    background: transparent;
+    color: #ff00ff;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-eliminar:hover{
+    background: #ff00ff;
+    color: white;
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.7);
+}
+
+.btn-editar{
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #00ffff;
+    border-radius: 6px;
+    background: transparent;
+    color: #00ffff;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-editar:hover{
+    background: #00ffff;
+    color: #0b0b18;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+}
+
+#buscador{
+    max-width: 700px;
+    margin: 0 auto 30px;
+}
+
+#buscar-videojuego{
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 18px;
+    border: 1px solid #00ffff;
+    border-radius: 10px;
+    background: #15152a;
+    color: white;
+    font-size: 16px;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+    transition: 0.3s ease
+}
+
+#buscar-videojuego:focus{
+    outline: none;
+    border-color: #ff00ff;
+    box-shadow: 0 0 12px rgba(255, 0, 255, 0.6), 0 0 25px rgba(0, 255, 255, 0.3);
+    transform: scale(1.01);
+}
+
+#buscar-videojuego::placeholder{
+    color: #888;
+    transition: 0.3s ease;
+}
+
+#filtros{
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    max-width: 1000px;
+    margin: 0 auto 30px;
+}
+
+#filtros select{
+    flex: 1;
+    padding: 12px 15px;
+    color: black;
+    border: 1px solid #00ffff;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+    transition: 0.3s ease;
+}
+
+#filtros select option{
+    background: #15152a;
+    color: #00ffff;
+}
+
+#filtros select:hover{
+    box-shadow: 0 0 18px rgba(0, 255, 255, 0.7);
+    transform: translateY(-2px)
+}
+
+#filtros select:focus {
+
+    color: #00ffff;
+
+    background-color: #15152a;
+
+}
+
+.resenas {
+    margin-top: 15px;
+    padding: 15px;
+    background: #0b0b18;
+    border: 1px solid #ff00ff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.25);
+}
+
+.resenas h3{
+    margin-top: 0;
+    color: #00ffff;
+    font-size: 18px;
+}
+
+.resena {
+    margin-top: 10px;
+    padding: 10px;
+    background: #15152a;
+    border-left: 3px solid #00ffff;
+    border-radius: 5px;
+}
+
+.resena strong{
+    color: #ff00ff;
+}
+
+.resena p{
+    margin: 6px 0;
+    color: #ddd;
+}
+
+.detalle{
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 30px;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.detalle img{
+    width: 100%;
+    height: 350px;
+    object-fit: contain;
+    border-radius: 12px;
+    border: 1px solid #00ffff;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4), 0 0 25px rgba(255, 0, 255, 0.2);
+}
+
+.detalle h1{
+    color: #ff00ff;
+    text-align: left;
+    margin: 0 0 20px;
+    font-size: 38px;
+    text-shadow: 0 0 12px #ff00ff;
+}
+
+.detalle p{
+    color: #ddd;
+    font-size: 17px;
+    margin: 12px 0;
+}
+
+.detalle strong{
+    color: #00ffff;
+}
+
+.resenas-detalle {
+    margin-top: 25px;
+    padding: 20px;
+    background: #15152a;
+    border: 1px solid #ff00ff;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
+}
+
+.resenas-detalle h2{
+    margin-top: 0;
+    color: #00ffff;
+}
+
+.resenas-detalle .resena{
+    margin-top: 15px;
+}
+
+.btn-detalles{
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px;
+    border: 1px solid #00ffff;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #15152a, #1b1b35);
+    color: #00ffff;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+    transition: 0.3s ease;
+}
+
+.btn-detalles:hover{
+    background: #00ffff;
+    color: #0b0b18;
+    transform: translateY(-2px);
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.7), 0 0 25px rgba(0, 255, 255, 0.4);
+}
+
+#volver-videojuegos{
+    display: block;
+    margin: 0 0 25px auto;
+    padding: 10px 20px;
+    border: 1px solid #ff00ff;
+    border-radius: 8px;
+    background: #15152a;
+    color: #ff00ff;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.4);
+    transition: 0.3s ease;
+}
+
+#volver-videojuegos:hover{
+    background: #ff00ff;
+    color: #0b0b18;
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
+    transform: translateY(-2px);
+}
+
+.formulario-resena-detalle{
+    margin-top: 25px;
+    padding: 20px;
+    background: #15152a;
+    border: 1px solid #00ffff;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+.formulario-resena-detalle h3{
+    margin-top: 0;
+    color: #ff00ff;
+}
+
+.formulario-resena-detalle input,
+.formulario-resena-detalle select,
+.formulario-resena-detalle textarea{
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 10px;
+    padding: 12px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    background: #0b0b18;
+    color: white;
+    font-size: 15px;
+}
+
+.formulario-resena-detalle textarea{
+    min-height: 100px;
+    resize: vertical;
+}
+
+.formulario-resena-detalle input:focus,
+.formulario-resena-detalle select:focus,
+.formulario-resena-detalle textarea:focus {
+    outline: none;
+    border-color: #00ffff;
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+}
+
+#enviar-resena {
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background: #ff00ff;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+    transition: 0.3s;
+}
+
+#enviar-resena:hover{
+    background: #00ffff;
+    color: #0b0b18;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+}
+.video-juego{
+    margin-top: 25px;
+    padding: 20px;
+    background: #15152a;
+    border: 1px solid #ff00ff;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
+}
+
+.video-juego h2{
+    margin-top: 0;
+    color: #00ffff;
+}
+
+.video-juego iframe{
+    width: 100%;
+    height: 500px;
+    border: none;
+    border-radius: 8px;
+}
+
+#resultados-rawg {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 30px auto;
+}
+
+.tarjeta-rawg {
+    background: #15152a;
+    border: 1px solid #00ffff;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+    transition: 0.3s;
+}
+
+.tarjeta-rawg:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.7);
+}
+
+.tarjeta-rawg img {
+    width: 100%;
+    height: 250px;
+    object-fit: contain;
+    background: #0b0b18;
+    border-radius: 8px;
+}
+
+.tarjeta-rawg .info-videojuego {
+    margin-top: 10px;
+}
+
+.tarjeta-rawg h2 {
+    color: #ff00ff;
+    margin-top: 0;
+    text-shadow: 0 0 8px rgba(255, 0, 255, 0.5);
+}
+
+.tarjeta-rawg p {
+    color: #ddd;
+    margin: 8px 0;
+}
+
+.tarjeta-rawg strong {
+    color: #00ffff;
+}
+
+.boton-anadir-rawg{
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px;
+    border: 1px solid #ff00ff;
+    border-radius: 8px;
+    background: #0b0b18;
+    color: #ff00ff;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.4);
+}
+
+.boton-anadir-rawg:hover{
+    background: #ff00ff;
+    color: #0b0b18;
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
+    transform: scale(1.02);
+}
+
+#cargar-mas-rawg{
+    display: block;
+    margin: 30px auto;
+    padding: 14px 30px;
+    border: 1px solid #00ffff;
+    border-radius: 8px;
+    background: #15152a;
+    color: #00ffff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+}
+
+#cargar-mas-rawg:hover{
+    background: #00ffff;
+    color: #0b0b18;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+    transform: scale(1.05);
+}
+
+.separador-neon{
+    width: 100%;
+    max-width: 1000px;
+    height: 2px;
+    margin: -25px auto 35px;
+    background: #00ffff;
+    box-shadow: 0 0 5px #00ffff, 0 0 15px #00ffff, 0 0 25px #ff00ff;
+    position: relative;
+}
+
+.separador-neon::after{
+    content: "✦";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 0 10px;
+    background: #0b0b18;
+    color: #ff00ff;
+    font-size: 16px;
+    text-shadow: 0 0 8px #ff00ff
+}
+
+#detalle-videojuego{
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 25px;
+    background: linear-gradient(145deg, #15152a, #0f0f20);
+    border: 1px solid #00ffff;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3), 0 0 35px rgba(255, 0, 255, 0.15);
+}
+
+.btn-favorito{
+    width: 100%;
+    margin-top: 10px;
+    padding: 12px;
+    border: 1px solid #ff00ff;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #15152a, #1b1b35);
+    color: #ff00ff;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(255, 0, 255, 0.3);
+    transition: 0.3s ease;
+}
+
+.btn-favorito:hover{
+    background: #ff00ff;
+    color: #0b0b18;
+    transform: translateY(-2px);
+    box-shadow: 0 0 12px rgba(255, 0, 255, 0.7), 0 0 25px rgba(255, 0, 255, 0.4);
+}
+
+#mostrar-favoritos{
+    display: block;
+    margin: -15px auto 30px;
+    padding: 12px 25px;
+    border: 1px solid #ff00ff;
+    border-radius: 8px;
+    background: #15152a;
+    color: #ff00ff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.4);
+    transition: 0.3s ease;
+}
+
+#mostrar-favoritos:hover{
+    background: #ff00ff;
+    color: #0b0b18;
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.8);
+    transform: translateY(-2px);
+}
+
+#mostrar-todos{
+    display: block;
+    margin: -15px auto 30px;
+    padding: 12px 25px;
+    border: 1px solid #00ffff;
+    border-radius: 8px;
+    background: #15152a;
+    color: #00ffff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+    transition: 0.3s ease;
+}
+
+#mostrar-todos:hover{
+    background: #00ffff;
+    color: #0b0b18;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+    transform: translateY(-2px);
+}
+
+#ranking-videojuegos{
+    max-width: 900px;
+    margin: 30px auto;
+    text-align: center;
+}
+
+#ranking-videojuegos h2{
+    color: #00ffff;
+    font-size: 28px;
+    margin-bottom: 25px;
+    text-shadow: 0 0 5px #00ffff, 0 0 15px #00ffff;
+}
+
+.tarjeta-ranking{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin: 15px 0;
+    padding: 18px 25px;
+    background: linear-gradient(90deg, #15152a, #1b1b35);
+    border: 1px solid #00ffff;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.3), inset 0 0 10px rgba(0, 255, 255, 0.05);
+    transition: 0.3s ease;
+}
+
+.tarjeta-ranking:hover{
+    transform: translateY(-3px);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.7), 0 0 30px rgba(0, 255, 255, 0.3);
+
+}
+
+.tarjeta-ranking h3{
+    margin: 0;
+    color: white;
+    font-size: 20px;
+}
+
+.tarjeta-ranking p{
+    margin: 0;
+    color: #00ffff;
+    font-weight: bold;
+}
+
+.posicion-ranking{
+    font-size: 32px;
+    min-width: 70px;
+    text-align: center;
+}
+
+.info-ranking{
+    flex: 1;
+    text-align: left;
+}
+
+.info-ranking h3{
+    margin: 0 0 8px;
+    color: white;
+    font-size: 20px
+}
+
+.info-ranking p{
+    margin: 4px 0;
+    color: #00ffff;
+    font-weight: bold;
+}
+
+.btn-ranking-detalles{
+    padding: 10px 18px;
+    border: 1px solid #00ffff;
+    border-radius: 8px;
+    background: #15152a;
+    color: #00ffff;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+    transition: 0.3s ease;
+}
+
+.btn-ranking-detalles:hover{
+    background: #00ffff;
+    color: #0b0b18;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+#mostrar-ranking{
+    display: block;
+    margin: -15px auto 30px;
+    padding: 12px 25px;
+    border: 1px solid #ffd700;
+    border-radius: 8px;
+    background: #15152a;
+    color: #ffd700;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(255, 255, 0, 0.4);
+    transition: 0.3s ease;
+}
+
+#mostrar-ranking:hover{
+    background: #ffd700;
+    color: #0b0b18;
+    box-shadow: 0 0 15px rgba(255, 255, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+#mensaje-notificacion{
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    z-index: 9999;
+    padding: 15px 25px;
+    background: #15152a;
+    color: #00ffff;
+    border: 1px solid #00ffff;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.6), 0 0 25px rgba(0, 255, 255, 0.3);
+    opacity: 0;
+    transform: translateX(120%);
+    transition: 0.4s ease;
+    pointer-events: none;
+}
+
+#mensaje-notificacion.mostrar{
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* ============================= */
+/* 📱 DISEÑO PARA MÓVILES */
+/* ============================= */
+
+@media (max-width: 600px){
+    body{
+        padding: 10px;
+    }
+
+    h1{
+        font-size: 28px;
+        text-align: center;
+    }
+
+    h2{
+        font-size: 22px;
+    }
+
+    #mostrar-formulario,
+    #mostrar-favoritos,
+    #mostrar-todos,
+    #mostrar-ranking {
+        width: 100%;
+        box-sizing: border-box;
+        margin: 10px 0;
+    }
+
+    /* Buscador */
+
+    #buscar-videojuego {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Filtros */
+
+    #filtros {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    #filtros select {
+        width: 100%;
+    }
+
+    /* Formulario */
+
+    #formulario-videojuego {
+        grid-template-columns: 1fr;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 15px;
+    }
+
+    #formulario-videojuego input,
+    #formulario-videojuego button {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Tarjetas */
+
+    #lista-videojuegos {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+
+    /* Ranking */
+
+    #ranking-videojuegos {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .tarjeta-ranking {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+
+    .info-ranking {
+        text-align: center;
+        width: 100%;
+    }
+
+    .btn-ranking-detalles {
+        width: 100%;
+    }
+
+    /* Notificaciones */
+
+    #mensaje-notificacion {
+        top: 15px;
+        left: 10px;
+        right: 10px;
+
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    /* Detalles */
+
+    .detalle {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .detalle img {
+        width: 100%;
+        max-width: 350px;
+    }
+
+    .video-juego iframe {
+        width: 100%;
+        height: 220px;
+    }
+}
+
+/* ============================= */
+/* 📱 MENÚ HAMBURGUESA */
+/* ============================= */
+
+#boton-menu {
+    display: none;
+}
+
+/* 💻 ORDENADOR */
+
+#menu-movil {
+    display: contents;
+}
+
+/* 📱 MÓVIL */
+
+@media (max-width: 600px) {
+
+    #boton-menu {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+
+        margin: 15px 0 20px;
+        padding: 14px;
+
+        border: 1px solid #00ffff;
+        border-radius: 8px;
+
+        background: #15152a;
+        color: #00ffff;
+
+        font-size: 17px;
+        font-weight: bold;
+
+        cursor: pointer;
+
+        box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+
+        transition: 0.3s ease;
+    }
+
+    #boton-menu:hover {
+        background: #00ffff;
+        color: #0b0b18;
+
+        box-shadow:
+            0 0 15px rgba(0, 255, 255, 0.8),
+            0 0 30px rgba(0, 255, 255, 0.4);
+    }
+
+    #menu-movil {
+        display: none;
+
+        flex-direction: column;
+        align-items: stretch;
+
+        width: 100%;
+        box-sizing: border-box;
+
+        margin: 0 auto 25px;
+        padding: 15px;
+
+        background: #15152a;
+
+        border: 1px solid #00ffff;
+        border-radius: 12px;
+
+        box-shadow:
+            0 0 15px rgba(0, 255, 255, 0.4);
+    }
+
+    #menu-movil.menu-abierto {
+        display: flex;
+    }
+
+    /* 🎛️ Filtros */
+
+    #menu-movil #filtros {
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+        max-width: none;
+
+        margin: 0 0 10px;
+
+        gap: 10px;
+    }
+
+    #menu-movil #filtros select {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* 🎮 Botones */
+
+    #menu-movil > button {
+        width: 100%;
+        box-sizing: border-box;
+
+        margin: 5px 0;
+    }
+}
+
+/* ============================= */
+/* 🏆 CABECERA DEL RANKING */
+/* ============================= */
+
+.cabecera-ranking{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.cabecera-ranking h2{
+    margin: 0;
+    color: #00ffff;
+    font-size: 28px;
+    text-shadow: 0 0 5px #00ffff, 0 0 15px #00ffff, 0 0 25px rgba(0, 255, 255, 0.5);
+}
+
+/* ✖ Cerrar ranking */
+
+#cerrar-ranking{
+    padding: 10px 18px;
+    border: 1px solid #ff00ff;
+    border-radius: 8px;
+    background: #15152a;
+    color: #ff00ff;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(255, 0, 255, 0.4);
+    transition: 0.3s ease;
+}
+
+#cerrar-ranking:hover{
+    background: #ff00ff;
+    color: #0b0b18;
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.8), 0 0 30px rgba(255, 0, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+/* 📱 Móvil */
+
+@media (max-width: 600px) {
+
+    .cabecera-ranking {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .cabecera-ranking h2 {
+        text-align: center;
+        font-size: 24px;
+    }
+
+    #cerrar-ranking {
+        width: 100%;
+    }
+}
+
+/* ======================================== */
+/* 🎮 FOOTER GAMER FLOTANTE */
+/* ======================================== */
+
+#footer {
+    position: fixed;
+    z-index: 1000;
+
+    bottom: 15px;
+    left: 50%;
+
+    width: min(1100px, calc(100% - 40px));
+    box-sizing: border-box;
+
+    margin: 0;
+    padding: 20px 25px 12px;
+
+    background: rgba(11, 11, 24, 0.96);
+
+    border: 1px solid rgba(0, 255, 255, 0.7);
+    border-radius: 16px;
+
+    box-shadow:
+        0 0 20px rgba(0, 255, 255, 0.18),
+        0 0 35px rgba(255, 0, 255, 0.08);
+
+    backdrop-filter: blur(15px);
+
+    /* Oculto inicialmente */
+    transform: translate(-50%, calc(100% + 30px));
+
+    transition: transform 0.4s ease;
+}
+
+/* Aparece al desplazarse por la página */
+
+#footer.footer-visible {
+    transform: translate(-50%, 0);
+}
+
+/* ======================================== */
+/* 📦 CONTENIDO */
+/* ======================================== */
+
+.footer-contenido {
+    display: grid;
+
+    grid-template-columns: 1.2fr 1fr 1fr;
+
+    gap: 30px;
+    align-items: center;
+
+    max-width: 100%;
+    margin: 0 auto 15px;
+}
+
+/* Secciones */
+
+.footer-seccion {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 10px;
+}
+
+/* ======================================== */
+/* 🎮 GAMEZONE */
+/* ======================================== */
+
+.footer-sobre h2 {
+    margin: 0 0 8px;
+
+    color: #00ffff;
+    font-size: 22px;
+    font-weight: 700;
+
+    text-shadow: none;
+}
+
+.footer-sobre p {
+    margin: 0;
+
+    color: #b9b9cc;
+
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* ======================================== */
+/* 🕹️ TÍTULOS */
+/* ======================================== */
+
+.footer-seccion h3 {
+    margin: 0 0 5px;
+
+    color: #ff00ff;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    text-shadow: none;
+}
+
+/* ======================================== */
+/* 🔗 ENLACES */
+/* ======================================== */
+
+.footer-enlaces a,
+.footer-redes a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #d0d0e0;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: normal;
+    text-decoration: none;
+    transition: 0.25s ease;
+}
+
+.footer-enlaces a:hover,
+.footer-redes a:hover {
+    color: #00ffff;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.35);
+    transform: translateX(3px);
+}
+
+/* ======================================== */
+/* 🌐 REDES SOCIALES */
+/* ======================================== */
+
+.footer-redes {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px 15px;
+}
+
+.footer-redes h3 {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.footer-redes a {
+    padding: 7px 10px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(0, 255, 255, 0.15);
+    border-radius: 8px;
+}
+
+.footer-redes a:hover {
+    border-color: #00ffff;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.12);
+}
+
+.footer-redes a i {
+    width: 18px;
+    font-size: 18px;
+    text-align: center;
+}
+
+/* Colores de los iconos */
+
+.footer-redes .fa-tiktok {
+    color: #00ffff;
+}
+
+.footer-redes .fa-instagram {
+    color: #ff00ff;
+}
+
+.footer-redes .fa-codepen {
+    color: white;
+}
+
+.footer-redes .fa-github {
+    color: #00ffff;
+}
+
+/* ======================================== */
+/* © INFORMACIÓN INFERIOR */
+/* ======================================== */
+
+.footer-inferior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(0, 255, 255, 0.2);
+}
+
+.footer-inferior p {
+    margin: 0;
+    color: #85859e;
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: normal;
+}
+
+/* ======================================== */
+/* 📱 TABLETS */
+/* ======================================== */
+
+@media (max-width: 900px) {
+
+    #footer {
+        width: calc(100% - 24px);
+        bottom: 12px;
+        padding: 15px 18px 10px;
+        max-height: 35vh;
+        overflow-y: auto;
+    }
+
+    .footer-contenido {
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        margin-bottom: 12px;
+    }
+
+    .footer-sobre {
+        grid-column: 1 / -1;
+    }
+
+    .footer-sobre p {
+        max-width: 100%;
+    }
+
+}
+
+/* ======================================== */
+/* 📱 MÓVILES */
+/* ======================================== */
+
+@media (max-width: 600px) {
+
+    #footer {
+        width: calc(100% - 16px);
+        bottom: 8px;
+        padding: 15px;
+        max-height: 32vh;
+        overflow-y: auto;
+        border-radius: 14px;
+    }
+
+    .footer-contenido {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .footer-sobre {
+        grid-column: auto;
+    }
+
+    .footer-sobre h2 {
+        font-size: 20px;
+    }
+
+    .footer-sobre p {
+        font-size: 12px;
+    }
+
+    .footer-seccion h3 {
+        font-size: 13px;
+    }
+
+    .footer-enlaces,
+    .footer-redes {
+        gap: 9px;
+    }
+
+    .footer-enlaces a,
+    .footer-redes a {
+        font-size: 12px;
+    }
+
+    .footer-inferior {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+}
+
+/* Footer normal: no tapa los videojuegos */
+
+#footer {
+    position: relative !important;
+    left: auto !important;
+    bottom: auto !important;
+    width: min(1200px, calc(100% - 30px));
+    height: auto;
+    max-height: none !important;
+    margin: 60px auto 20px;
+    transform: none !important;
+    overflow: visible !important;
+    z-index: auto;
+}
+
+#footer.footer-visible {
+    transform: none !important;
+}
+
+/* ======================================== */
+/* 🌐 REDES SOCIALES FLOTANTES */
+/* ======================================== */
+
+#redes-flotantes {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 900;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    transition: opacity 0.3s ease;
+}
+
+/* Botón principal */
+
+#boton-redes-flotantes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 12px 18px;
+    background: #15152a;
+    color: #00ffff;
+    border: 1px solid #00ffff;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.25);
+    transition: 0.3s ease;
+}
+
+#boton-redes-flotantes:hover {
+    background: #00ffff;
+    color: #0b0b18;
+
+    box-shadow:
+        0 0 15px rgba(0, 255, 255, 0.6),
+        0 0 25px rgba(0, 255, 255, 0.2);
+}
+
+/* Panel de redes */
+
+#panel-redes-flotantes {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    width: 180px;
+    box-sizing: border-box;
+    padding: 12px;
+    background: #15152a;
+    border: 1px solid #00ffff;
+    border-radius: 12px;
+    box-shadow:
+        0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+/* Panel abierto */
+
+#panel-redes-flotantes.panel-abierto {
+    display: flex;
+}
+
+/* Enlaces */
+
+#panel-redes-flotantes a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    color: #d0d0e0;
+    font-family: inherit;
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 7px;
+    transition: 0.25s ease;
+}
+
+#panel-redes-flotantes a i {
+    width: 20px;
+    font-size: 19px;
+    text-align: center;
+}
+
+#panel-redes-flotantes a:hover {
+    background: rgba(0, 255, 255, 0.08);
+    color: #00ffff;
+}
+
+/* Colores de iconos */
+
+#panel-redes-flotantes .fa-tiktok {
+    color: #00ffff;
+}
+
+#panel-redes-flotantes .fa-instagram {
+    color: #ff00ff;
+}
+
+#panel-redes-flotantes .fa-codepen {
+    color: white;
+}
+
+#panel-redes-flotantes .fa-github {
+    color: #00ffff;
+}
+
+/* Ocultar cuando pueda molestar */
+
+#redes-flotantes.redes-ocultas {
+    display: none;
+}
+
+/* Adaptación para móviles */
+
+@media (max-width: 600px) {
+
+    #redes-flotantes {
+        right: 12px;
+        bottom: 12px;
+    }
+
+    #boton-redes-flotantes {
+        padding: 11px 15px;
+    }
+
+    #panel-redes-flotantes {
+        width: 175px;
+    }
+
+}
+
+/* ======================================== */
+/* FOOTER GAMEZONE */
+/* ======================================== */
+
+#footer {
+    position: relative !important;
+    left: auto !important;
+    bottom: auto !important;
+    width: calc(100% - 40px);
+    max-width: 1200px;
+    box-sizing: border-box;
+    margin: 70px auto 20px;
+    padding: 35px 30px 20px;
+    background: #11111f;
+    border: 1px solid #292940;
+    border-top: 3px solid #00ffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    transform: none !important;
+    max-height: none !important;
+    overflow: visible !important;
+    font-family: Arial, sans-serif;
+}
+
+/* ======================================== */
+/* DISTRIBUCIÓN DE LAS SECCIONES */
+/* ======================================== */
+
+.footer-contenido {
+    display: grid;
+    grid-template-columns: 1.3fr 0.8fr 1fr;
+    gap: 50px;
+    align-items: start;
+    width: 100%;
+    max-width: none;
+    margin: 0 auto 30px;
+}
+
+/* Cada sección */
+
+#footer .footer-seccion {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+}
+
+/* ======================================== */
+/* GAMEZONE */
+/* ======================================== */
+
+#footer .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    color: #00ffff;
+    font-family: Arial, sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+    letter-spacing: normal;
+    text-shadow: none;
+}
+
+#footer .footer-logo i {
+    font-size: 27px;
+}
+
+#footer .footer-sobre p {
+    max-width: 330px;
+    margin: 0;
+    color: #b8b8c8;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.8;
+}
+
+/* ======================================== */
+/* TÍTULOS DE LAS SECCIONES */
+/* ======================================== */
+
+#footer .footer-seccion h3 {
+    margin: 0 0 5px;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: normal;
+    text-shadow: none;
+}
+
+/* ======================================== */
+/* ENLACES DE NAVEGACIÓN */
+/* ======================================== */
+
+#footer .footer-enlaces a {
+    display: inline-block;
+    margin: 0;
+    padding: 3px 0;
+    color: #b8b8c8;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    text-decoration: none;
+    text-shadow: none;
+    transition: color 0.2s ease;
+}
+
+#footer .footer-enlaces a:hover {
+    color: #00ffff;
+    transform: none;
+    text-shadow: none;
+}
+
+/* ======================================== */
+/* REDES SOCIALES */
+/* ======================================== */
+
+#footer .footer-redes p {
+    margin: 0;
+    color: #b8b8c8;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.6;
+}
+
+/* Iconos en horizontal */
+
+#footer .footer-iconos-sociales {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-top: 5px;
+}
+
+/* Botón individual de cada red */
+
+#footer .footer-iconos-sociales a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background: #1b1b2e;
+    border: 1px solid #36364d;
+    border-radius: 10px;
+    color: #ffffff;
+    text-decoration: none;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+/* Tamaño de los iconos */
+
+#footer .footer-iconos-sociales a i {
+    width: auto;
+    color: inherit;
+    font-size: 21px;
+    text-align: center;
+    transition: none;
+}
+
+/* Efecto al pasar el ratón */
+
+#footer .footer-iconos-sociales a:hover {
+    background: #23233b;
+    border-color: #00ffff;
+    color: #00ffff;
+    transform: translateY(-3px);
+    box-shadow: none;
+}
+
+/* ======================================== */
+/* COPYRIGHT */
+/* ======================================== */
+
+#footer .footer-inferior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding-top: 18px;
+    border-top: 1px solid #292940;
+}
+
+#footer .footer-inferior p {
+    margin: 0;
+    color: #85859e;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 1.6;
+    letter-spacing: normal;
+}
+
+/* ======================================== */
+/* TABLETS */
+/* ======================================== */
+
+@media (max-width: 900px) {
+
+    #footer {
+        width: calc(100% - 30px);
+        padding: 30px 22px 18px;
+    }
+
+    .footer-contenido {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+
+    #footer .footer-sobre {
+        grid-column: 1 / -1;
+    }
+
+}
+
+/* ======================================== */
+/* MÓVILES */
+/* ======================================== */
+
+@media (max-width: 600px) {
+
+    #footer {
+        width: calc(100% - 20px);
+        margin-top: 45px;
+        padding: 25px 18px 18px;
+        border-radius: 10px;
+    }
+
+    .footer-contenido {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        margin-bottom: 25px;
+    }
+
+    #footer .footer-sobre {
+        grid-column: auto;
+    }
+
+    #footer .footer-logo {
+        font-size: 23px;
+    }
+
+    #footer .footer-sobre p {
+        max-width: 100%;
+    }
+
+    #footer .footer-iconos-sociales {
+        gap: 12px;
+    }
+
+    #footer .footer-iconos-sociales a {
+        width: 46px;
+        height: 46px;
+    }
+
+    #footer .footer-inferior {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+}
+
+/* ======================================== */
+/* ⬆️ BOTÓN VOLVER ARRIBA */
+/* ======================================== */
+
+#volver-arriba {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    z-index: 950;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: #15152a;
+    color: #00ffff;
+    border: 1px solid #00ffff;
+    border-radius: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(12px);
+    box-shadow: 0 0 12px rgba(0, 255, 255, 0.2);
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease,
+        transform 0.3s ease,
+        background 0.3s ease;
+}
+
+/* Cuando aparece */
+
+#volver-arriba.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+/* Efecto al pasar el ratón */
+
+#volver-arriba:hover {
+    background: #00ffff;
+    color: #0b0b18;
+    box-shadow: 0 0 18px rgba(0, 255, 255, 0.5);
+    transform: translateY(-3px);
+}
+
+/* Adaptación a móviles */
+
+@media (max-width: 600px) {
+
+    #volver-arriba {
+        right: 15px;
+        bottom: 15px;
+        width: 44px;
+        height: 44px;
+        font-size: 18px;
+    }
+
+}
+
