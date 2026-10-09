@@ -3,6 +3,80 @@ import { GoogleGenAI } from "@google/genai";
 
 const router = express.Router();
 
+// 🤖 Generar recomendaciones con reintentos automáticos
+
+async function generarConReintentos(ai, prompt) {
+
+    const modelos = [
+        "gemini-3.8-flash",
+        "gemini-3.7-flash"
+    ];
+
+    let ultimoError;
+
+    for (const modelo of modelos) {
+
+        // Dos intentos con cada modelo
+        for (let intento = 1; intento <= 2; intento++) {
+
+            try {
+
+                console.log(
+                    `🤖 Intento ${intento} con ${modelo}`
+                );
+
+                const respuesta = await ai.models.generateContent({
+                    model: modelo,
+                    contents: prompt
+                });
+
+                console.log("✅ Recomendaciones generadas correctamente");
+
+                return respuesta;
+
+            } catch (error) {
+
+                ultimoError = error;
+
+                const estado = Number(error.status);
+
+                // Errores temporales
+                const errorTemporal = [
+                    429,
+                    500,
+                    502,
+                    503,
+                    504
+                ].includes(estado);
+
+                // Si el error no es temporal, no repetir
+                if (!errorTemporal) {
+                    throw error;
+                }
+
+                console.log(
+                    `⚠️ ${modelo} no está disponible. Error: ${estado}`
+                );
+
+                // Esperar antes del segundo intento
+                if (intento < 2) {
+
+                    console.log("⏳ Reintentando en 1,5 segundos...");
+
+                    await new Promise(resolve => {
+                        setTimeout(resolve, 1500);
+                    });
+
+                }
+            }
+        }
+
+        console.log("🔄 Probando el siguiente modelo...");
+    }
+
+    throw ultimoError;
+}
+
 router.post("/", async (req, res) => {
 
     try {
@@ -69,10 +143,7 @@ router.post("/", async (req, res) => {
         `;
 
         // Solicitar las recomendaciones a Gemini
-        const respuesta = await ai.models.generateContent({
-            model: "gemini-3.7-flash",
-            contents: prompt
-        });
+        const respuesta = await generarConReintentos(ai, prompt);
 
         // Devolver las recomendaciones al navegador
         // Procesar la respuesta de Gemini

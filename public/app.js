@@ -7,7 +7,7 @@ let paginaRAWG = 1;
 
 async function obtenerJuegos(busqueda = "", pagina = 1) {
     try {
-        const url = `${BASE_URL}/games?key=${API_KEY}&page_size=20&page=${pagina}&search=${encodeURIComponent(busqueda)}`;
+        const url = `${BASE_URL}/games?key=${API_KEY}&page_size=10&page=${pagina}&search=${encodeURIComponent(busqueda)}`;
 
         const response = await fetch(url);
 
