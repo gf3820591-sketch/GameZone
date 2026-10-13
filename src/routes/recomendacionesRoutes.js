@@ -9,7 +9,7 @@ async function generarConReintentos(ai, prompt) {
 
     const modelos = [
         "gemini-3.8-flash",
-        "gemini-3.7-flash"
+        "gemini-3.6-flash"
     ];
 
     let ultimoError;
@@ -40,19 +40,31 @@ async function generarConReintentos(ai, prompt) {
 
                 const estado = Number(error.status);
 
-                // Errores temporales
+                // Detectar errores temporales y tiempos agotados
+                const esTiempoAgotado =
+                    error?.name === "TimeoutError" ||
+                    error?.name === "AbortError" ||
+                    /timeout|timed out|aborted/i.test(error?.message || "");
+
                 const errorTemporal = [
+                    408,
                     429,
                     500,
                     502,
                     503,
                     504
-                ].includes(estado);
+                ].includes(estado) || esTiempoAgotado;
 
                 // Si el error no es temporal, no repetir
                 if (!errorTemporal) {
                     throw error;
                 }
+
+                console.log(
+                    esTiempoAgotado
+                        ? `⏳ Tiempo agotado con ${modelo}.`
+                        : `⚠️ ${modelo} no está disponible. Error: ${estado}`
+                );
 
                 console.log(
                     `⚠️ ${modelo} no está disponible. Error: ${estado}`
@@ -100,7 +112,15 @@ router.post("/", async (req, res) => {
 
         // Crear el cliente de Gemini
         const ai = new GoogleGenAI({
-            apiKey: apiKey
+            apiKey: apiKey,
+
+                httpOptions: {
+                    timeout: 20000,
+
+                    retryOptions: {
+                    attempts: 1
+                }
+            }
         });
 
         // Preparar las instrucciones para la IA
